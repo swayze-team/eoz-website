@@ -1,0 +1,17 @@
+{
+  "name": "eoz-discord-bot",
+  "version": "1.0.0",
+  "description": "Bot Discord pour EOZ Team",
+  "main": "discordbot.js",
+  "type": "module",
+  "scripts": {
+    "start": "node discordbot.js",
+    "dev": "node --watch discordbot.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.14.0",
+    "dotenv": "^16.3.1",
+    "node-fetch": "^3.3.2"
+  }
+}
+
