@@ -1,5 +1,5 @@
 import { jsxDEV } from "react/jsx-dev-runtime";
-import { useState } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 const VideoBackground = () => {
   const [isLoaded, setIsLoaded] = useState(false);

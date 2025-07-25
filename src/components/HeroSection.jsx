@@ -1,4 +1,5 @@
 import { jsxDEV } from "react/jsx-dev-runtime";
+import React from "react";
 import { motion } from "framer-motion";
 import { ArrowDown, Gamepad2, Trophy, Users, Zap } from "lucide-react";
 const HeroSection = () => {
@@ -8,12 +9,12 @@ const HeroSection = () => {
       {
         className: "absolute w-2 h-2 bg-discord-blurple rounded-full opacity-20",
         initial: {
-          x: Math.random() * window.innerWidth,
-          y: Math.random() * window.innerHeight
+          x: Math.random() * (typeof window !== "undefined" ? window.innerWidth : 1920),
+          y: Math.random() * (typeof window !== "undefined" ? window.innerHeight : 1080)
         },
         animate: {
-          x: Math.random() * window.innerWidth,
-          y: Math.random() * window.innerHeight
+          x: Math.random() * (typeof window !== "undefined" ? window.innerWidth : 1920),
+          y: Math.random() * (typeof window !== "undefined" ? window.innerHeight : 1080)
         },
         transition: {
           duration: Math.random() * 10 + 10,
@@ -185,12 +186,12 @@ const HeroSection = () => {
                           columnNumber: 15
                         }),
                         /* @__PURE__ */ jsxDEV("div", { className: "text-left", children: [
-                          /* @__PURE__ */ jsxDEV("span", { className: "text-xl font-bold block", children: "1200+" }, void 0, false, {
+                          /* @__PURE__ */ jsxDEV("span", { className: "text-xl font-bold block", children: "Team" }, void 0, false, {
                             fileName: "<stdin>",
                             lineNumber: 100,
                             columnNumber: 17
                           }),
-                          /* @__PURE__ */ jsxDEV("span", { className: "text-sm text-gray-400", children: "Membres" }, void 0, false, {
+                          /* @__PURE__ */ jsxDEV("span", { className: "text-sm text-gray-400", children: "Professionnelle" }, void 0, false, {
                             fileName: "<stdin>",
                             lineNumber: 101,
                             columnNumber: 17

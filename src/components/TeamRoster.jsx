@@ -1,5 +1,5 @@
 import { jsxDEV } from "react/jsx-dev-runtime";
-import { useState } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Crown, Shield, Gamepad2, Users, Trophy, Star, Zap, Palette, Video, Wrench } from "lucide-react";
 const TeamRoster = () => {

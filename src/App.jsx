@@ -1,4 +1,5 @@
 import { jsxDEV } from "react/jsx-dev-runtime";
+import React from "react";
 import { motion } from "framer-motion";
 import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";

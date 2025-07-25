@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [
     react({
-      jsxRuntime: 'automatic' // ✅ corrige l'erreur React is not defined
+      jsxRuntime: 'classic'
     })
   ],
   base: './',
@@ -29,3 +29,4 @@ export default defineConfig({
     'process.env': {}
   }
 })
+

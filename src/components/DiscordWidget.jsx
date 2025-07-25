@@ -1,5 +1,5 @@
 import { jsxDEV } from "react/jsx-dev-runtime";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Users, UserCheck, MessageCircle, Activity, Crown } from "lucide-react";
 const DiscordWidget = () => {
@@ -10,70 +10,27 @@ const DiscordWidget = () => {
   });
   const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState({
-    totalMembers: 1247,
-    onlineMembers: 342,
-    staffOnline: 12,
-    averageActivity: 87
+    totalMembers: 0,
+    onlineMembers: 0,
+    staffOnline: 0,
+    averageActivity: 0
   });
   useEffect(() => {
-    const mockData = {
-      memberCount: stats.totalMembers,
-      onlineCount: stats.onlineMembers,
-      members: [
-        {
-          id: "1",
-          username: "EOZ Teddy \xAE",
-          avatar: "https://cdn.discordapp.com/embed/avatars/0.png",
-          status: "online",
-          role: "Fondateur",
-          isStaff: true
-        },
-        {
-          id: "2",
-          username: "EOZ Max",
-          avatar: "https://cdn.discordapp.com/embed/avatars/1.png",
-          status: "online",
-          role: "Head FTN",
-          isStaff: true
-        },
-        {
-          id: "3",
-          username: "EOZ Slavik mitro",
-          avatar: "https://cdn.discordapp.com/embed/avatars/2.png",
-          status: "dnd",
-          role: "Pro Player",
-          isStaff: false
-        },
-        {
-          id: "4",
-          username: "EOZ Sno0w",
-          avatar: "https://cdn.discordapp.com/embed/avatars/3.png",
-          status: "online",
-          role: "Resp. Discord",
-          isStaff: true
-        },
-        {
-          id: "5",
-          username: "EOZ | Val",
-          avatar: "https://cdn.discordapp.com/embed/avatars/4.png",
-          status: "idle",
-          role: "Administrateur",
-          isStaff: true
-        }
-      ]
+    const resetData = {
+      memberCount: 0,
+      onlineCount: 0,
+      members: []
     };
     setTimeout(() => {
-      setDiscordData(mockData);
+      setDiscordData(resetData);
+      setStats({
+        totalMembers: 0,
+        onlineMembers: 0,
+        staffOnline: 0,
+        averageActivity: 0
+      });
       setLoading(false);
     }, 1500);
-    const interval = setInterval(() => {
-      setStats((prev) => ({
-        ...prev,
-        onlineMembers: prev.onlineMembers + Math.floor(Math.random() * 10 - 5),
-        averageActivity: Math.max(70, Math.min(95, prev.averageActivity + Math.floor(Math.random() * 6 - 3)))
-      }));
-    }, 3e4);
-    return () => clearInterval(interval);
   }, []);
   const fetchDiscordData = async () => {
     try {
@@ -132,38 +89,38 @@ const DiscordWidget = () => {
             false,
             {
               fileName: "<stdin>",
-              lineNumber: 124,
+              lineNumber: 78,
               columnNumber: 9
             }
           ),
           /* @__PURE__ */ jsxDEV("p", { className: "text-xl text-gray-300 leading-relaxed", children: "Rejoignez notre serveur Discord et faites partie de l'aventure EOZ Team" }, void 0, false, {
             fileName: "<stdin>",
-            lineNumber: 131,
+            lineNumber: 85,
             columnNumber: 9
           })
         ] }, void 0, true, {
           fileName: "<stdin>",
-          lineNumber: 123,
+          lineNumber: 77,
           columnNumber: 7
         }),
         loading ? /* @__PURE__ */ jsxDEV("div", { className: "flex justify-center items-center py-16", children: /* @__PURE__ */ jsxDEV("div", { className: "relative", children: [
           /* @__PURE__ */ jsxDEV("div", { className: "animate-spin rounded-full h-16 w-16 border-4 border-discord-blurple border-t-transparent" }, void 0, false, {
             fileName: "<stdin>",
-            lineNumber: 139,
+            lineNumber: 93,
             columnNumber: 13
           }),
           /* @__PURE__ */ jsxDEV("div", { className: "absolute inset-0 rounded-full border-4 border-discord-blurple/20" }, void 0, false, {
             fileName: "<stdin>",
-            lineNumber: 140,
+            lineNumber: 94,
             columnNumber: 13
           })
         ] }, void 0, true, {
           fileName: "<stdin>",
-          lineNumber: 138,
+          lineNumber: 92,
           columnNumber: 11
         }) }, void 0, false, {
           fileName: "<stdin>",
-          lineNumber: 137,
+          lineNumber: 91,
           columnNumber: 9
         }) : /* @__PURE__ */ jsxDEV("div", { className: "grid grid-cols-1 xl:grid-cols-3 gap-8", children: [
           /* @__PURE__ */ jsxDEV("div", { className: "xl:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6", children: [
@@ -177,45 +134,177 @@ const DiscordWidget = () => {
                   /* @__PURE__ */ jsxDEV("div", { className: "flex items-center justify-between mb-4", children: /* @__PURE__ */ jsxDEV("div", { className: "flex items-center space-x-4", children: [
                     /* @__PURE__ */ jsxDEV("div", { className: "p-3 bg-discord-blurple/20 rounded-xl", children: /* @__PURE__ */ jsxDEV(Users, { className: "text-discord-blurple", size: 32 }, void 0, false, {
                       fileName: "<stdin>",
-                      lineNumber: 155,
+                      lineNumber: 109,
                       columnNumber: 21
                     }) }, void 0, false, {
                       fileName: "<stdin>",
-                      lineNumber: 154,
+                      lineNumber: 108,
                       columnNumber: 19
                     }),
                     /* @__PURE__ */ jsxDEV("div", { children: [
                       /* @__PURE__ */ jsxDEV("h3", { className: "text-2xl font-bold", children: "Membres Total" }, void 0, false, {
                         fileName: "<stdin>",
-                        lineNumber: 158,
+                        lineNumber: 112,
                         columnNumber: 21
                       }),
                       /* @__PURE__ */ jsxDEV("p", { className: "text-gray-400", children: "Communaut\xE9 active" }, void 0, false, {
                         fileName: "<stdin>",
-                        lineNumber: 159,
+                        lineNumber: 113,
                         columnNumber: 21
                       })
                     ] }, void 0, true, {
                       fileName: "<stdin>",
-                      lineNumber: 157,
+                      lineNumber: 111,
                       columnNumber: 19
                     })
                   ] }, void 0, true, {
                     fileName: "<stdin>",
-                    lineNumber: 153,
+                    lineNumber: 107,
                     columnNumber: 17
                   }) }, void 0, false, {
                     fileName: "<stdin>",
-                    lineNumber: 152,
+                    lineNumber: 106,
                     columnNumber: 15
                   }),
                   /* @__PURE__ */ jsxDEV("div", { className: "flex items-end space-x-2", children: [
-                    /* @__PURE__ */ jsxDEV("span", { className: "text-4xl font-black text-discord-blurple group-hover:text-purple-400 transition-colors", children: discordData.memberCount.toLocaleString() }, void 0, false, {
+                    /* @__PURE__ */ jsxDEV("span", { className: "text-4xl font-black text-discord-blurple group-hover:text-purple-400 transition-colors", children: stats.totalMembers.toLocaleString() }, void 0, false, {
+                      fileName: "<stdin>",
+                      lineNumber: 118,
+                      columnNumber: 17
+                    }),
+                    /* @__PURE__ */ jsxDEV("span", { className: "text-gray-400 text-sm font-semibold mb-1", children: "En attente" }, void 0, false, {
+                      fileName: "<stdin>",
+                      lineNumber: 121,
+                      columnNumber: 17
+                    })
+                  ] }, void 0, true, {
+                    fileName: "<stdin>",
+                    lineNumber: 117,
+                    columnNumber: 15
+                  })
+                ]
+              },
+              void 0,
+              true,
+              {
+                fileName: "<stdin>",
+                lineNumber: 101,
+                columnNumber: 13
+              }
+            ),
+            /* @__PURE__ */ jsxDEV(
+              motion.div,
+              {
+                className: "glass p-8 rounded-2xl border border-green-400/20 group",
+                whileHover: { scale: 1.02, borderColor: "rgba(34, 197, 94, 0.4)" },
+                transition: { type: "spring", stiffness: 300 },
+                children: [
+                  /* @__PURE__ */ jsxDEV("div", { className: "flex items-center justify-between mb-4", children: /* @__PURE__ */ jsxDEV("div", { className: "flex items-center space-x-4", children: [
+                    /* @__PURE__ */ jsxDEV("div", { className: "p-3 bg-green-400/20 rounded-xl", children: /* @__PURE__ */ jsxDEV(UserCheck, { className: "text-green-400", size: 32 }, void 0, false, {
+                      fileName: "<stdin>",
+                      lineNumber: 133,
+                      columnNumber: 21
+                    }) }, void 0, false, {
+                      fileName: "<stdin>",
+                      lineNumber: 132,
+                      columnNumber: 19
+                    }),
+                    /* @__PURE__ */ jsxDEV("div", { children: [
+                      /* @__PURE__ */ jsxDEV("h3", { className: "text-2xl font-bold", children: "En Ligne" }, void 0, false, {
+                        fileName: "<stdin>",
+                        lineNumber: 136,
+                        columnNumber: 21
+                      }),
+                      /* @__PURE__ */ jsxDEV("p", { className: "text-gray-400", children: "Membres actifs" }, void 0, false, {
+                        fileName: "<stdin>",
+                        lineNumber: 137,
+                        columnNumber: 21
+                      })
+                    ] }, void 0, true, {
+                      fileName: "<stdin>",
+                      lineNumber: 135,
+                      columnNumber: 19
+                    })
+                  ] }, void 0, true, {
+                    fileName: "<stdin>",
+                    lineNumber: 131,
+                    columnNumber: 17
+                  }) }, void 0, false, {
+                    fileName: "<stdin>",
+                    lineNumber: 130,
+                    columnNumber: 15
+                  }),
+                  /* @__PURE__ */ jsxDEV("div", { className: "flex items-end space-x-2", children: [
+                    /* @__PURE__ */ jsxDEV("span", { className: "text-4xl font-black text-green-400 group-hover:text-green-300 transition-colors", children: stats.onlineMembers }, void 0, false, {
+                      fileName: "<stdin>",
+                      lineNumber: 142,
+                      columnNumber: 17
+                    }),
+                    /* @__PURE__ */ jsxDEV("span", { className: "text-gray-400 text-sm font-semibold mb-1", children: "En attente" }, void 0, false, {
+                      fileName: "<stdin>",
+                      lineNumber: 145,
+                      columnNumber: 17
+                    })
+                  ] }, void 0, true, {
+                    fileName: "<stdin>",
+                    lineNumber: 141,
+                    columnNumber: 15
+                  })
+                ]
+              },
+              void 0,
+              true,
+              {
+                fileName: "<stdin>",
+                lineNumber: 125,
+                columnNumber: 13
+              }
+            ),
+            /* @__PURE__ */ jsxDEV(
+              motion.div,
+              {
+                className: "glass p-8 rounded-2xl border border-yellow-400/20 group",
+                whileHover: { scale: 1.02, borderColor: "rgba(251, 191, 36, 0.4)" },
+                transition: { type: "spring", stiffness: 300 },
+                children: [
+                  /* @__PURE__ */ jsxDEV("div", { className: "flex items-center space-x-4 mb-4", children: [
+                    /* @__PURE__ */ jsxDEV("div", { className: "p-3 bg-yellow-400/20 rounded-xl", children: /* @__PURE__ */ jsxDEV(Crown, { className: "text-yellow-400", size: 32 }, void 0, false, {
+                      fileName: "<stdin>",
+                      lineNumber: 156,
+                      columnNumber: 19
+                    }) }, void 0, false, {
+                      fileName: "<stdin>",
+                      lineNumber: 155,
+                      columnNumber: 17
+                    }),
+                    /* @__PURE__ */ jsxDEV("div", { children: [
+                      /* @__PURE__ */ jsxDEV("h3", { className: "text-2xl font-bold", children: "Staff Actif" }, void 0, false, {
+                        fileName: "<stdin>",
+                        lineNumber: 159,
+                        columnNumber: 19
+                      }),
+                      /* @__PURE__ */ jsxDEV("p", { className: "text-gray-400", children: "\xC9quipe de mod\xE9ration" }, void 0, false, {
+                        fileName: "<stdin>",
+                        lineNumber: 160,
+                        columnNumber: 19
+                      })
+                    ] }, void 0, true, {
+                      fileName: "<stdin>",
+                      lineNumber: 158,
+                      columnNumber: 17
+                    })
+                  ] }, void 0, true, {
+                    fileName: "<stdin>",
+                    lineNumber: 154,
+                    columnNumber: 15
+                  }),
+                  /* @__PURE__ */ jsxDEV("div", { className: "flex items-end space-x-2", children: [
+                    /* @__PURE__ */ jsxDEV("span", { className: "text-4xl font-black text-yellow-400 group-hover:text-yellow-300 transition-colors", children: stats.staffOnline }, void 0, false, {
                       fileName: "<stdin>",
                       lineNumber: 164,
                       columnNumber: 17
                     }),
-                    /* @__PURE__ */ jsxDEV("span", { className: "text-green-400 text-sm font-semibold mb-1", children: "+12 aujourd'hui" }, void 0, false, {
+                    /* @__PURE__ */ jsxDEV("span", { className: "text-gray-400 text-sm font-semibold mb-1", children: "En attente" }, void 0, false, {
                       fileName: "<stdin>",
                       lineNumber: 167,
                       columnNumber: 17
@@ -231,139 +320,7 @@ const DiscordWidget = () => {
               true,
               {
                 fileName: "<stdin>",
-                lineNumber: 147,
-                columnNumber: 13
-              }
-            ),
-            /* @__PURE__ */ jsxDEV(
-              motion.div,
-              {
-                className: "glass p-8 rounded-2xl border border-green-400/20 group",
-                whileHover: { scale: 1.02, borderColor: "rgba(34, 197, 94, 0.4)" },
-                transition: { type: "spring", stiffness: 300 },
-                children: [
-                  /* @__PURE__ */ jsxDEV("div", { className: "flex items-center justify-between mb-4", children: /* @__PURE__ */ jsxDEV("div", { className: "flex items-center space-x-4", children: [
-                    /* @__PURE__ */ jsxDEV("div", { className: "p-3 bg-green-400/20 rounded-xl", children: /* @__PURE__ */ jsxDEV(UserCheck, { className: "text-green-400", size: 32 }, void 0, false, {
-                      fileName: "<stdin>",
-                      lineNumber: 179,
-                      columnNumber: 21
-                    }) }, void 0, false, {
-                      fileName: "<stdin>",
-                      lineNumber: 178,
-                      columnNumber: 19
-                    }),
-                    /* @__PURE__ */ jsxDEV("div", { children: [
-                      /* @__PURE__ */ jsxDEV("h3", { className: "text-2xl font-bold", children: "En Ligne" }, void 0, false, {
-                        fileName: "<stdin>",
-                        lineNumber: 182,
-                        columnNumber: 21
-                      }),
-                      /* @__PURE__ */ jsxDEV("p", { className: "text-gray-400", children: "Membres actifs" }, void 0, false, {
-                        fileName: "<stdin>",
-                        lineNumber: 183,
-                        columnNumber: 21
-                      })
-                    ] }, void 0, true, {
-                      fileName: "<stdin>",
-                      lineNumber: 181,
-                      columnNumber: 19
-                    })
-                  ] }, void 0, true, {
-                    fileName: "<stdin>",
-                    lineNumber: 177,
-                    columnNumber: 17
-                  }) }, void 0, false, {
-                    fileName: "<stdin>",
-                    lineNumber: 176,
-                    columnNumber: 15
-                  }),
-                  /* @__PURE__ */ jsxDEV("div", { className: "flex items-end space-x-2", children: [
-                    /* @__PURE__ */ jsxDEV("span", { className: "text-4xl font-black text-green-400 group-hover:text-green-300 transition-colors", children: stats.onlineMembers }, void 0, false, {
-                      fileName: "<stdin>",
-                      lineNumber: 188,
-                      columnNumber: 17
-                    }),
-                    /* @__PURE__ */ jsxDEV("span", { className: "text-yellow-400 text-sm font-semibold mb-1", children: "Pic: 412" }, void 0, false, {
-                      fileName: "<stdin>",
-                      lineNumber: 191,
-                      columnNumber: 17
-                    })
-                  ] }, void 0, true, {
-                    fileName: "<stdin>",
-                    lineNumber: 187,
-                    columnNumber: 15
-                  })
-                ]
-              },
-              void 0,
-              true,
-              {
-                fileName: "<stdin>",
-                lineNumber: 171,
-                columnNumber: 13
-              }
-            ),
-            /* @__PURE__ */ jsxDEV(
-              motion.div,
-              {
-                className: "glass p-8 rounded-2xl border border-yellow-400/20 group",
-                whileHover: { scale: 1.02, borderColor: "rgba(251, 191, 36, 0.4)" },
-                transition: { type: "spring", stiffness: 300 },
-                children: [
-                  /* @__PURE__ */ jsxDEV("div", { className: "flex items-center space-x-4 mb-4", children: [
-                    /* @__PURE__ */ jsxDEV("div", { className: "p-3 bg-yellow-400/20 rounded-xl", children: /* @__PURE__ */ jsxDEV(Crown, { className: "text-yellow-400", size: 32 }, void 0, false, {
-                      fileName: "<stdin>",
-                      lineNumber: 202,
-                      columnNumber: 19
-                    }) }, void 0, false, {
-                      fileName: "<stdin>",
-                      lineNumber: 201,
-                      columnNumber: 17
-                    }),
-                    /* @__PURE__ */ jsxDEV("div", { children: [
-                      /* @__PURE__ */ jsxDEV("h3", { className: "text-2xl font-bold", children: "Staff Actif" }, void 0, false, {
-                        fileName: "<stdin>",
-                        lineNumber: 205,
-                        columnNumber: 19
-                      }),
-                      /* @__PURE__ */ jsxDEV("p", { className: "text-gray-400", children: "\xC9quipe de mod\xE9ration" }, void 0, false, {
-                        fileName: "<stdin>",
-                        lineNumber: 206,
-                        columnNumber: 19
-                      })
-                    ] }, void 0, true, {
-                      fileName: "<stdin>",
-                      lineNumber: 204,
-                      columnNumber: 17
-                    })
-                  ] }, void 0, true, {
-                    fileName: "<stdin>",
-                    lineNumber: 200,
-                    columnNumber: 15
-                  }),
-                  /* @__PURE__ */ jsxDEV("div", { className: "flex items-end space-x-2", children: [
-                    /* @__PURE__ */ jsxDEV("span", { className: "text-4xl font-black text-yellow-400 group-hover:text-yellow-300 transition-colors", children: stats.staffOnline }, void 0, false, {
-                      fileName: "<stdin>",
-                      lineNumber: 210,
-                      columnNumber: 17
-                    }),
-                    /* @__PURE__ */ jsxDEV("span", { className: "text-gray-400 text-sm font-semibold mb-1", children: "/15 total" }, void 0, false, {
-                      fileName: "<stdin>",
-                      lineNumber: 213,
-                      columnNumber: 17
-                    })
-                  ] }, void 0, true, {
-                    fileName: "<stdin>",
-                    lineNumber: 209,
-                    columnNumber: 15
-                  })
-                ]
-              },
-              void 0,
-              true,
-              {
-                fileName: "<stdin>",
-                lineNumber: 195,
+                lineNumber: 149,
                 columnNumber: 13
               }
             ),
@@ -377,32 +334,32 @@ const DiscordWidget = () => {
                   /* @__PURE__ */ jsxDEV("div", { className: "flex items-center space-x-4 mb-4", children: [
                     /* @__PURE__ */ jsxDEV("div", { className: "p-3 bg-purple-400/20 rounded-xl", children: /* @__PURE__ */ jsxDEV(Activity, { className: "text-purple-400", size: 32 }, void 0, false, {
                       fileName: "<stdin>",
-                      lineNumber: 224,
+                      lineNumber: 178,
                       columnNumber: 19
                     }) }, void 0, false, {
                       fileName: "<stdin>",
-                      lineNumber: 223,
+                      lineNumber: 177,
                       columnNumber: 17
                     }),
                     /* @__PURE__ */ jsxDEV("div", { children: [
                       /* @__PURE__ */ jsxDEV("h3", { className: "text-2xl font-bold", children: "Activit\xE9" }, void 0, false, {
                         fileName: "<stdin>",
-                        lineNumber: 227,
+                        lineNumber: 181,
                         columnNumber: 19
                       }),
                       /* @__PURE__ */ jsxDEV("p", { className: "text-gray-400", children: "Score d'engagement" }, void 0, false, {
                         fileName: "<stdin>",
-                        lineNumber: 228,
+                        lineNumber: 182,
                         columnNumber: 19
                       })
                     ] }, void 0, true, {
                       fileName: "<stdin>",
-                      lineNumber: 226,
+                      lineNumber: 180,
                       columnNumber: 17
                     })
                   ] }, void 0, true, {
                     fileName: "<stdin>",
-                    lineNumber: 222,
+                    lineNumber: 176,
                     columnNumber: 15
                   }),
                   /* @__PURE__ */ jsxDEV("div", { className: "flex items-end space-x-2", children: [
@@ -411,17 +368,17 @@ const DiscordWidget = () => {
                       "%"
                     ] }, void 0, true, {
                       fileName: "<stdin>",
-                      lineNumber: 232,
+                      lineNumber: 186,
                       columnNumber: 17
                     }),
-                    /* @__PURE__ */ jsxDEV("span", { className: "text-green-400 text-sm font-semibold mb-1", children: "Excellent" }, void 0, false, {
+                    /* @__PURE__ */ jsxDEV("span", { className: "text-gray-400 text-sm font-semibold mb-1", children: "En attente" }, void 0, false, {
                       fileName: "<stdin>",
-                      lineNumber: 235,
+                      lineNumber: 189,
                       columnNumber: 17
                     })
                   ] }, void 0, true, {
                     fileName: "<stdin>",
-                    lineNumber: 231,
+                    lineNumber: 185,
                     columnNumber: 15
                   })
                 ]
@@ -430,30 +387,30 @@ const DiscordWidget = () => {
               true,
               {
                 fileName: "<stdin>",
-                lineNumber: 217,
+                lineNumber: 171,
                 columnNumber: 13
               }
             )
           ] }, void 0, true, {
             fileName: "<stdin>",
-            lineNumber: 146,
+            lineNumber: 100,
             columnNumber: 11
           }),
           /* @__PURE__ */ jsxDEV("div", { className: "glass p-6 rounded-2xl border border-white/10 flex flex-col", children: [
             /* @__PURE__ */ jsxDEV("h3", { className: "text-2xl font-bold mb-6 flex items-center space-x-3", children: [
               /* @__PURE__ */ jsxDEV(MessageCircle, { className: "text-discord-blurple", size: 28 }, void 0, false, {
                 fileName: "<stdin>",
-                lineNumber: 243,
+                lineNumber: 197,
                 columnNumber: 15
               }),
               /* @__PURE__ */ jsxDEV("span", { children: "Widget Discord" }, void 0, false, {
                 fileName: "<stdin>",
-                lineNumber: 244,
+                lineNumber: 198,
                 columnNumber: 15
               })
             ] }, void 0, true, {
               fileName: "<stdin>",
-              lineNumber: 242,
+              lineNumber: 196,
               columnNumber: 13
             }),
             /* @__PURE__ */ jsxDEV("div", { className: "flex-1 flex justify-center items-start", children: /* @__PURE__ */ jsxDEV(
@@ -472,22 +429,22 @@ const DiscordWidget = () => {
               false,
               {
                 fileName: "<stdin>",
-                lineNumber: 248,
+                lineNumber: 202,
                 columnNumber: 15
               }
             ) }, void 0, false, {
               fileName: "<stdin>",
-              lineNumber: 247,
+              lineNumber: 201,
               columnNumber: 13
             })
           ] }, void 0, true, {
             fileName: "<stdin>",
-            lineNumber: 241,
+            lineNumber: 195,
             columnNumber: 11
           })
         ] }, void 0, true, {
           fileName: "<stdin>",
-          lineNumber: 144,
+          lineNumber: 98,
           columnNumber: 9
         }),
         /* @__PURE__ */ jsxDEV(motion.div, { className: "mt-10 text-center", children: [
@@ -503,12 +460,12 @@ const DiscordWidget = () => {
               children: [
                 /* @__PURE__ */ jsxDEV(MessageCircle, { size: 28, className: "group-hover:rotate-12 transition-transform duration-300" }, void 0, false, {
                   fileName: "<stdin>",
-                  lineNumber: 273,
+                  lineNumber: 227,
                   columnNumber: 11
                 }),
                 /* @__PURE__ */ jsxDEV("span", { children: "Rejoindre le Discord EOZ" }, void 0, false, {
                   fileName: "<stdin>",
-                  lineNumber: 274,
+                  lineNumber: 228,
                   columnNumber: 11
                 }),
                 /* @__PURE__ */ jsxDEV(
@@ -523,7 +480,7 @@ const DiscordWidget = () => {
                   false,
                   {
                     fileName: "<stdin>",
-                    lineNumber: 275,
+                    lineNumber: 229,
                     columnNumber: 11
                   }
                 )
@@ -533,18 +490,18 @@ const DiscordWidget = () => {
             true,
             {
               fileName: "<stdin>",
-              lineNumber: 265,
+              lineNumber: 219,
               columnNumber: 9
             }
           ),
           /* @__PURE__ */ jsxDEV("p", { className: "text-gray-400 mt-4 text-sm", children: "\u{1F525} Serveur v\xE9rifi\xE9 \u2022 24/7 Support \u2022 Communaut\xE9 active" }, void 0, false, {
             fileName: "<stdin>",
-            lineNumber: 283,
+            lineNumber: 237,
             columnNumber: 9
           })
         ] }, void 0, true, {
           fileName: "<stdin>",
-          lineNumber: 264,
+          lineNumber: 218,
           columnNumber: 7
         })
       ]
@@ -553,7 +510,7 @@ const DiscordWidget = () => {
     true,
     {
       fileName: "<stdin>",
-      lineNumber: 116,
+      lineNumber: 70,
       columnNumber: 5
     }
   );
