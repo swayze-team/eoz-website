@@ -1,5 +1,5 @@
 import { Fragment, jsxDEV } from "react/jsx-dev-runtime";
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Send, MessageSquare, User, Mail, AlertCircle, CheckCircle2 } from "lucide-react";
 const SupportForm = () => {

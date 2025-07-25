@@ -1,5 +1,5 @@
 import { jsxDEV } from "react/jsx-dev-runtime";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Users, UserCheck, MessageCircle, Activity, Crown } from "lucide-react";
 const DiscordWidget = () => {
