@@ -1,5 +1,4 @@
 import { jsxDEV } from "react/jsx-dev-runtime";
-import React from "react";
 import { motion } from "framer-motion";
 import { ArrowDown, Gamepad2, Trophy, Users, Zap } from "lucide-react";
 const HeroSection = () => {
