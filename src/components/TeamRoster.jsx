@@ -1,4 +1,3 @@
-import { jsxDEV } from "react/jsx-dev-runtime";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Crown, Shield, Gamepad2, Users, Trophy, Star, Zap, Palette, Video, Wrench } from "lucide-react";
@@ -125,255 +124,123 @@ const TeamRoster = () => {
       }
     }
   };
-  const renderMemberCard = (member, index) => /* @__PURE__ */ jsxDEV(
+  const renderMemberCard = (member, index) => React.createElement(
     motion.div,
     {
+      key: `${member.name}-${index}`,
       className: "glass p-4 rounded-xl hover:bg-white hover:bg-opacity-10 transition-all duration-300",
       initial: { opacity: 0, y: 20 },
       animate: { opacity: 1, y: 0 },
       transition: { delay: index * 0.05, duration: 0.3 },
-      whileHover: { scale: 1.02, y: -2 },
-      children: /* @__PURE__ */ jsxDEV("div", { className: "flex items-center space-x-3", children: [
-        /* @__PURE__ */ jsxDEV("div", { className: "text-2xl", children: member.special }, void 0, false, {
-          fileName: "<stdin>",
-          lineNumber: 141,
-          columnNumber: 9
-        }),
-        /* @__PURE__ */ jsxDEV("div", { className: "flex-1", children: [
-          /* @__PURE__ */ jsxDEV("div", { className: "flex items-center space-x-2", children: [
-            /* @__PURE__ */ jsxDEV("span", { className: "text-lg", children: member.flag }, void 0, false, {
-              fileName: "<stdin>",
-              lineNumber: 144,
-              columnNumber: 13
-            }),
-            /* @__PURE__ */ jsxDEV("h4", { className: "font-semibold text-white", children: member.name }, void 0, false, {
-              fileName: "<stdin>",
-              lineNumber: 145,
-              columnNumber: 13
-            })
-          ] }, void 0, true, {
-            fileName: "<stdin>",
-            lineNumber: 143,
-            columnNumber: 11
-          }),
-          /* @__PURE__ */ jsxDEV("p", { className: "text-sm text-gray-400", children: member.role }, void 0, false, {
-            fileName: "<stdin>",
-            lineNumber: 147,
-            columnNumber: 11
-          })
-        ] }, void 0, true, {
-          fileName: "<stdin>",
-          lineNumber: 142,
-          columnNumber: 9
-        })
-      ] }, void 0, true, {
-        fileName: "<stdin>",
-        lineNumber: 140,
-        columnNumber: 7
-      })
+      whileHover: { scale: 1.02, y: -2 }
     },
-    `${member.name}-${index}`,
-    false,
-    {
-      fileName: "<stdin>",
-      lineNumber: 132,
-      columnNumber: 5
-    }
+    React.createElement("div", { className: "flex items-center space-x-3" }, [
+      React.createElement("div", { key: "emoji", className: "text-2xl" }, member.special),
+      React.createElement("div", { key: "info", className: "flex-1" }, [
+        React.createElement("div", { key: "name-row", className: "flex items-center space-x-2" }, [
+          React.createElement("span", { key: "flag", className: "text-lg" }, member.flag),
+          React.createElement("h4", { key: "name", className: "font-semibold text-white" }, member.name)
+        ]),
+        React.createElement("p", { key: "role", className: "text-sm text-gray-400" }, member.role)
+      ])
+    ])
   );
   const renderStaffSection = (section, sectionKey) => {
     const IconComponent = section.icon;
-    return /* @__PURE__ */ jsxDEV(
-      motion.div,
-      {
-        className: "mb-8",
-        initial: { opacity: 0, y: 20 },
-        animate: { opacity: 1, y: 0 },
-        transition: { delay: 0.1, duration: 0.4 },
-        children: [
-          /* @__PURE__ */ jsxDEV("div", { className: "flex items-center space-x-3 mb-6", children: [
-            /* @__PURE__ */ jsxDEV(IconComponent, { className: `${section.color}`, size: 28 }, void 0, false, {
-              fileName: "<stdin>",
-              lineNumber: 164,
-              columnNumber: 11
-            }),
-            /* @__PURE__ */ jsxDEV("h3", { className: "text-2xl font-bold text-white", children: section.title }, void 0, false, {
-              fileName: "<stdin>",
-              lineNumber: 165,
-              columnNumber: 11
-            })
-          ] }, void 0, true, {
-            fileName: "<stdin>",
-            lineNumber: 163,
-            columnNumber: 9
-          }),
-          /* @__PURE__ */ jsxDEV("div", { className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4", children: section.members.map((member, index) => renderMemberCard(member, index)) }, void 0, false, {
-            fileName: "<stdin>",
-            lineNumber: 167,
-            columnNumber: 9
-          })
-        ]
-      },
-      sectionKey,
-      true,
-      {
-        fileName: "<stdin>",
-        lineNumber: 156,
-        columnNumber: 7
-      }
-    );
+    return React.createElement(motion.div, {
+      key: sectionKey,
+      className: "mb-8",
+      initial: { opacity: 0, y: 20 },
+      animate: { opacity: 1, y: 0 },
+      transition: { delay: 0.1, duration: 0.4 }
+    }, [
+      React.createElement("div", { className: "flex items-center space-x-3 mb-6" }, [
+        React.createElement(IconComponent, { className: `${section.color}` }, null),
+        React.createElement("h3", { className: "text-2xl font-bold text-white" }, section.title)
+      ]),
+      React.createElement("div", { className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" }, [
+        section.members.map((member, index) => renderMemberCard(member, index))
+      ])
+    ]);
   };
   const renderEsportSection = (game, gameKey) => {
     const IconComponent = game.icon;
-    return /* @__PURE__ */ jsxDEV(
-      motion.div,
-      {
-        className: "mb-12",
-        initial: { opacity: 0, y: 20 },
-        animate: { opacity: 1, y: 0 },
-        transition: { delay: 0.1, duration: 0.4 },
-        children: [
-          /* @__PURE__ */ jsxDEV("div", { className: "flex items-center space-x-3 mb-8", children: [
-            /* @__PURE__ */ jsxDEV(IconComponent, { className: `${game.color}`, size: 32 }, void 0, false, {
-              fileName: "<stdin>",
-              lineNumber: 185,
-              columnNumber: 11
-            }),
-            /* @__PURE__ */ jsxDEV("h3", { className: "text-3xl font-bold gradient-text", children: game.title }, void 0, false, {
-              fileName: "<stdin>",
-              lineNumber: 186,
-              columnNumber: 11
-            })
-          ] }, void 0, true, {
-            fileName: "<stdin>",
-            lineNumber: 184,
-            columnNumber: 9
-          }),
-          Object.entries(game.sections).map(([sectionKey, section]) => /* @__PURE__ */ jsxDEV("div", { className: "mb-8", children: [
-            /* @__PURE__ */ jsxDEV("h4", { className: "text-xl font-semibold text-white mb-4 pl-4 border-l-4 border-discord-blurple", children: section.title }, void 0, false, {
-              fileName: "<stdin>",
-              lineNumber: 191,
-              columnNumber: 13
-            }),
-            /* @__PURE__ */ jsxDEV("div", { className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4", children: section.members.map((member, index) => renderMemberCard(member, index)) }, void 0, false, {
-              fileName: "<stdin>",
-              lineNumber: 194,
-              columnNumber: 13
-            })
-          ] }, sectionKey, true, {
-            fileName: "<stdin>",
-            lineNumber: 190,
-            columnNumber: 11
-          }))
-        ]
-      },
-      gameKey,
-      true,
-      {
-        fileName: "<stdin>",
-        lineNumber: 177,
-        columnNumber: 7
-      }
-    );
+    return React.createElement(motion.div, {
+      key: gameKey,
+      className: "mb-12",
+      initial: { opacity: 0, y: 20 },
+      animate: { opacity: 1, y: 0 },
+      transition: { delay: 0.1, duration: 0.4 }
+    }, [
+      React.createElement("div", { className: "flex items-center space-x-3 mb-8" }, [
+        React.createElement(IconComponent, { className: `${game.color}` }, null),
+        React.createElement("h3", { className: "text-3xl font-bold gradient-text" }, game.title)
+      ]),
+      Object.entries(game.sections).map(([sectionKey, section]) => React.createElement("div", { key: sectionKey, className: "mb-8" }, [
+        React.createElement("h4", { className: "text-xl font-semibold text-white mb-4 pl-4 border-l-4 border-discord-blurple" }, section.title),
+        React.createElement("div", { className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" }, [
+          section.members.map((member, index) => renderMemberCard(member, index))
+        ])
+      ]))
+    ]);
   };
-  return /* @__PURE__ */ jsxDEV("section", { className: "py-20 px-4", children: /* @__PURE__ */ jsxDEV("div", { className: "max-w-7xl mx-auto", children: [
-    /* @__PURE__ */ jsxDEV(
-      motion.div,
-      {
+  return React.createElement(
+    "section",
+    { className: "py-20 px-4" },
+    React.createElement("div", { className: "max-w-7xl mx-auto" }, [
+      React.createElement(motion.div, {
+        key: "header",
         className: "text-center mb-12",
         initial: { opacity: 0, y: 50 },
         whileInView: { opacity: 1, y: 0 },
         transition: { duration: 0.8 },
-        viewport: { once: true },
-        children: [
-          /* @__PURE__ */ jsxDEV("h2", { className: "text-5xl font-bold mb-6 gradient-text", children: "Notre \xC9quipe" }, void 0, false, {
-            fileName: "<stdin>",
-            lineNumber: 213,
-            columnNumber: 11
-          }),
-          /* @__PURE__ */ jsxDEV("p", { className: "text-xl text-gray-300 max-w-3xl mx-auto", children: "D\xE9couvrez les talents qui composent EOZ Team, de notre staff d\xE9vou\xE9 \xE0 nos joueurs d'\xE9lite" }, void 0, false, {
-            fileName: "<stdin>",
-            lineNumber: 214,
-            columnNumber: 11
-          })
-        ]
-      },
-      void 0,
-      true,
-      {
-        fileName: "<stdin>",
-        lineNumber: 206,
-        columnNumber: 9
-      }
-    ),
-    /* @__PURE__ */ jsxDEV("div", { className: "flex justify-center mb-12", children: /* @__PURE__ */ jsxDEV("div", { className: "glass-dark rounded-full p-2 flex space-x-2", children: [
-      /* @__PURE__ */ jsxDEV(
-        "button",
-        {
-          onClick: () => setActiveTab("staff"),
-          className: `px-8 py-4 rounded-full font-semibold transition-all duration-300 ${activeTab === "staff" ? "bg-discord-blurple text-white" : "text-gray-400 hover:text-white"}`,
-          children: "Staff"
-        },
-        void 0,
-        false,
-        {
-          fileName: "<stdin>",
-          lineNumber: 222,
-          columnNumber: 13
-        }
+        viewport: { once: true }
+      }, [
+        React.createElement("h2", {
+          key: "title",
+          className: "text-5xl font-bold mb-6 gradient-text"
+        }, "Notre \xC9quipe"),
+        React.createElement("p", {
+          key: "subtitle",
+          className: "text-xl text-gray-300 max-w-3xl mx-auto"
+        }, "D\xE9couvrez les talents qui composent EOZ Team, de notre staff d\xE9vou\xE9 \xE0 nos joueurs d'\xE9lite")
+      ]),
+      // Tabs - Centered
+      React.createElement(
+        "div",
+        { key: "tabs", className: "flex justify-center mb-12" },
+        React.createElement("div", { className: "glass-dark rounded-full p-2 flex space-x-2" }, [
+          React.createElement("button", {
+            key: "staff-tab",
+            onClick: () => setActiveTab("staff"),
+            className: `px-8 py-4 rounded-full font-semibold transition-all duration-300 ${activeTab === "staff" ? "bg-discord-blurple text-white" : "text-gray-400 hover:text-white"}`
+          }, "Staff"),
+          React.createElement("button", {
+            key: "esport-tab",
+            onClick: () => setActiveTab("esport"),
+            className: `px-8 py-4 rounded-full font-semibold transition-all duration-300 ${activeTab === "esport" ? "bg-discord-blurple text-white" : "text-gray-400 hover:text-white"}`
+          }, "Esport")
+        ])
       ),
-      /* @__PURE__ */ jsxDEV(
-        "button",
-        {
-          onClick: () => setActiveTab("esport"),
-          className: `px-8 py-4 rounded-full font-semibold transition-all duration-300 ${activeTab === "esport" ? "bg-discord-blurple text-white" : "text-gray-400 hover:text-white"}`,
-          children: "Esport"
-        },
-        void 0,
-        false,
-        {
-          fileName: "<stdin>",
-          lineNumber: 232,
-          columnNumber: 13
-        }
-      )
-    ] }, void 0, true, {
-      fileName: "<stdin>",
-      lineNumber: 221,
-      columnNumber: 11
-    }) }, void 0, false, {
-      fileName: "<stdin>",
-      lineNumber: 220,
-      columnNumber: 9
-    }),
-    /* @__PURE__ */ jsxDEV("div", { className: "glass-dark rounded-2xl p-8", children: [
-      activeTab === "staff" && /* @__PURE__ */ jsxDEV("div", { children: Object.entries(staffData).map(
-        ([key, section]) => renderStaffSection(section, key)
-      ) }, void 0, false, {
-        fileName: "<stdin>",
-        lineNumber: 248,
-        columnNumber: 13
-      }),
-      activeTab === "esport" && /* @__PURE__ */ jsxDEV("div", { children: Object.entries(esportData).map(
-        ([key, game]) => renderEsportSection(game, key)
-      ) }, void 0, false, {
-        fileName: "<stdin>",
-        lineNumber: 256,
-        columnNumber: 13
-      })
-    ] }, void 0, true, {
-      fileName: "<stdin>",
-      lineNumber: 246,
-      columnNumber: 9
-    })
-  ] }, void 0, true, {
-    fileName: "<stdin>",
-    lineNumber: 205,
-    columnNumber: 7
-  }) }, void 0, false, {
-    fileName: "<stdin>",
-    lineNumber: 204,
-    columnNumber: 5
-  });
+      // Content
+      React.createElement("div", { key: "content", className: "glass-dark rounded-2xl p-8" }, [
+        activeTab === "staff" && React.createElement(
+          "div",
+          { key: "staff-content" },
+          Object.entries(staffData).map(
+            ([key, section]) => renderStaffSection(section, key)
+          )
+        ),
+        activeTab === "esport" && React.createElement(
+          "div",
+          { key: "esport-content" },
+          Object.entries(esportData).map(
+            ([key, game]) => renderEsportSection(game, key)
+          )
+        )
+      ])
+    ])
+  );
 };
 var stdin_default = TeamRoster;
 export {

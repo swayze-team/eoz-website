@@ -4,7 +4,8 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [
     react({
-      jsxRuntime: 'automatic'
+      jsxRuntime: 'classic',
+      jsxImportSource: 'react'
     })
   ],
   base: './',
@@ -26,7 +27,15 @@ export default defineConfig({
     host: true
   },
   define: {
-    'process.env': {}
+    'process.env': {},
+    global: 'globalThis'
+  },
+  esbuild: {
+    jsxFactory: 'React.createElement',
+    jsxFragment: 'React.Fragment',
+    jsx: 'transform'
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'framer-motion', 'lucide-react']
   }
 })
-

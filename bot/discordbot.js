@@ -1,4 +1,4 @@
-import { Client, GatewayIntentBits, EmbedBuilder } from 'discord.js'
+import { Client, GatewayIntentBits, EmbedBuilder, ChannelType } from 'discord.js'
 import fetch from 'node-fetch'
 import dotenv from 'dotenv'
 
@@ -140,7 +140,7 @@ client.on('messageCreate', async (message) => {
 })
 
 // Gérer les tickets reçus de l'API (via webhook ou autre méthode)
-async function handleSupportTicket(ticketData) {
+export async function handleSupportTicket(ticketData) {
   try {
     const supportChannel = client.channels.cache.get(SUPPORT_CHANNEL_ID)
     if (!supportChannel) {
@@ -221,5 +221,5 @@ process.on('unhandledRejection', (error) => {
 // Connexion du bot
 client.login(process.env.DISCORD_BOT_TOKEN)
 
-// Exportation unique à la fin
 export { client, handleSupportTicket }
+

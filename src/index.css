@@ -87,6 +87,35 @@
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(to bottom, #7289DA, #5865F2);
   }
+
+  .slider {
+    appearance: none;
+    background: rgba(255, 255, 255, 0.1);
+    outline: none;
+    border-radius: 15px;
+    height: 4px;
+  }
+
+  .slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #5865F2, #7289DA);
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  .slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #5865F2, #7289DA);
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  }
 }
 
 /* Enhanced scrollbar for the entire page */

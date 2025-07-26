@@ -1,408 +1,372 @@
-import { jsxDEV } from "react/jsx-dev-runtime";
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowDown, Gamepad2, Trophy, Users, Zap } from "lucide-react";
+import { ArrowDown, Gamepad2, Trophy, Users, Zap, Play } from "lucide-react";
+import { useState, useEffect } from "react";
 const HeroSection = () => {
-  return /* @__PURE__ */ jsxDEV("section", { id: "home", className: "min-h-screen flex items-center justify-center px-4 pt-16 relative overflow-hidden", children: [
-    /* @__PURE__ */ jsxDEV("div", { className: "absolute inset-0 overflow-hidden", children: [...Array(20)].map((_, i) => /* @__PURE__ */ jsxDEV(
+  const [typedText, setTypedText] = useState("");
+  const [heroStats, setHeroStats] = useState({
+    matches: 0,
+    victories: 0,
+    tournaments: 0
+  });
+  const fullText = "Excellence \u2022 Passion \u2022 Victoire";
+  useEffect(() => {
+    let index = 0;
+    const typeInterval = setInterval(() => {
+      if (index < fullText.length) {
+        setTypedText(fullText.slice(0, index + 1));
+        index++;
+      } else {
+        clearInterval(typeInterval);
+      }
+    }, 100);
+    const statsInterval = setInterval(() => {
+      setHeroStats((prev) => ({
+        matches: Math.min(prev.matches + Math.random() * 50, 2847),
+        victories: Math.min(prev.victories + Math.random() * 30, 2105),
+        tournaments: Math.min(prev.tournaments + Math.random() * 5, 47)
+      }));
+    }, 50);
+    setTimeout(() => clearInterval(statsInterval), 3e3);
+    return () => {
+      clearInterval(typeInterval);
+      clearInterval(statsInterval);
+    };
+  }, []);
+  return React.createElement("section", {
+    id: "home",
+    className: "min-h-screen flex items-center justify-center px-4 pt-16 relative overflow-hidden"
+  }, [
+    // Enhanced animated background particles
+    React.createElement(
+      "div",
+      { key: "particles", className: "absolute inset-0 overflow-hidden" },
+      [...Array(30)].map(
+        (_, i) => React.createElement(motion.div, {
+          key: `particle-${i}`,
+          className: "absolute rounded-full opacity-20",
+          style: {
+            width: Math.random() * 6 + 2,
+            height: Math.random() * 6 + 2,
+            background: `linear-gradient(45deg, #5865F2, #7289DA, #8A2BE2)`,
+            boxShadow: `0 0 ${Math.random() * 20 + 10}px rgba(88, 101, 242, 0.5)`
+          },
+          initial: {
+            x: Math.random() * (typeof window !== "undefined" ? window.innerWidth : 1920),
+            y: Math.random() * (typeof window !== "undefined" ? window.innerHeight : 1080)
+          },
+          animate: {
+            x: Math.random() * (typeof window !== "undefined" ? window.innerWidth : 1920),
+            y: Math.random() * (typeof window !== "undefined" ? window.innerHeight : 1080),
+            rotate: [0, 360],
+            scale: [1, 1.5, 1]
+          },
+          transition: {
+            duration: Math.random() * 20 + 10,
+            repeat: Infinity,
+            repeatType: "reverse",
+            ease: "easeInOut"
+          }
+        })
+      )
+    ),
+    // Floating geometric shapes
+    React.createElement(
+      "div",
+      { key: "shapes", className: "absolute inset-0 overflow-hidden pointer-events-none" },
+      [...Array(8)].map(
+        (_, i) => React.createElement(motion.div, {
+          key: `shape-${i}`,
+          className: "absolute border border-discord-blurple/30",
+          style: {
+            width: Math.random() * 100 + 50,
+            height: Math.random() * 100 + 50,
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            borderRadius: i % 2 === 0 ? "50%" : "0%"
+          },
+          animate: {
+            rotate: [0, 360],
+            x: [0, Math.random() * 200 - 100],
+            y: [0, Math.random() * 200 - 100]
+          },
+          transition: {
+            duration: Math.random() * 30 + 20,
+            repeat: Infinity,
+            ease: "linear"
+          }
+        })
+      )
+    ),
+    React.createElement(
+      "div",
+      { key: "content", className: "max-w-7xl mx-auto text-center relative z-10" },
+      React.createElement(motion.div, {
+        initial: { opacity: 0, y: 50 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.8, delay: 0.2 }
+      }, [
+        // Enhanced logo and title
+        React.createElement(motion.div, {
+          key: "title-container",
+          className: "mb-8",
+          initial: { scale: 0.8, opacity: 0 },
+          animate: { scale: 1, opacity: 1 },
+          transition: { duration: 1, delay: 0.3 }
+        }, [
+          React.createElement(
+            motion.div,
+            {
+              key: "logo-section",
+              className: "mb-6",
+              whileHover: { scale: 1.05 },
+              transition: { type: "spring", stiffness: 300 }
+            },
+            React.createElement("img", {
+              src: "https://iili.io/Fk7k6AB.gif",
+              alt: "EOZ Team Logo",
+              className: "h-32 w-auto mx-auto mb-4 filter drop-shadow-2xl"
+            })
+          ),
+          React.createElement(motion.h1, {
+            className: "text-7xl md:text-9xl font-black mb-6 gradient-text relative cursor-pointer",
+            whileHover: {
+              scale: 1.05,
+              textShadow: "0 0 40px rgba(88, 101, 242, 0.8)"
+            },
+            transition: { type: "spring", stiffness: 300 }
+          }, [
+            "EOZ TEAM",
+            React.createElement(motion.div, {
+              key: "glow",
+              className: "absolute -inset-1 bg-gradient-to-r from-discord-blurple via-purple-500 to-blue-500 rounded-lg blur-xl opacity-20",
+              animate: {
+                scale: [1, 1.1, 1],
+                opacity: [0.2, 0.4, 0.2],
+                rotate: [0, 5, -5, 0]
+              },
+              transition: {
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }
+            })
+          ])
+        ]),
+        // Enhanced description with typing effect
+        React.createElement(motion.div, {
+          key: "description-container",
+          className: "mb-12",
+          initial: { opacity: 0, y: 20 },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 0.8, delay: 0.6 }
+        }, [
+          React.createElement(motion.p, {
+            key: "typed-text",
+            className: "text-3xl md:text-4xl text-gray-200 mb-4 font-bold tracking-wider"
+          }, [
+            typedText,
+            React.createElement(motion.span, {
+              key: "cursor",
+              className: "inline-block w-1 h-8 bg-discord-blurple ml-1",
+              animate: { opacity: [0, 1, 0] },
+              transition: { duration: 1, repeat: Infinity }
+            })
+          ]),
+          React.createElement("p", {
+            key: "subtitle",
+            className: "text-xl text-gray-400 font-normal max-w-3xl mx-auto leading-relaxed"
+          }, "La r\xE9f\xE9rence fran\xE7aise en esport comp\xE9titif - Domination, Innovation, Excellence")
+        ]),
+        // Enhanced stats with live counters
+        React.createElement(motion.div, {
+          key: "stats-section",
+          className: "mb-16",
+          initial: { opacity: 0, y: 30 },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 0.8, delay: 0.8 }
+        }, [
+          React.createElement("div", {
+            key: "live-stats",
+            className: "grid grid-cols-1 md:grid-cols-3 gap-6 mb-8"
+          }, [
+            React.createElement(motion.div, {
+              key: "matches-stat",
+              className: "glass-dark px-6 py-4 rounded-2xl border border-blue-400/30 text-center",
+              whileHover: { scale: 1.05, borderColor: "rgba(59, 130, 246, 0.5)" }
+            }, [
+              React.createElement("div", {
+                key: "matches-number",
+                className: "text-3xl font-black text-blue-400 mb-1"
+              }, Math.floor(heroStats.matches).toLocaleString()),
+              React.createElement("div", {
+                key: "matches-label",
+                className: "text-sm text-gray-400"
+              }, "Matchs Jou\xE9s")
+            ]),
+            React.createElement(motion.div, {
+              key: "victories-stat",
+              className: "glass-dark px-6 py-4 rounded-2xl border border-green-400/30 text-center",
+              whileHover: { scale: 1.05, borderColor: "rgba(34, 197, 94, 0.5)" }
+            }, [
+              React.createElement("div", {
+                key: "victories-number",
+                className: "text-3xl font-black text-green-400 mb-1"
+              }, Math.floor(heroStats.victories).toLocaleString()),
+              React.createElement("div", {
+                key: "victories-label",
+                className: "text-sm text-gray-400"
+              }, "Victoires")
+            ]),
+            React.createElement(motion.div, {
+              key: "tournaments-stat",
+              className: "glass-dark px-6 py-4 rounded-2xl border border-yellow-400/30 text-center",
+              whileHover: { scale: 1.05, borderColor: "rgba(251, 191, 36, 0.5)" }
+            }, [
+              React.createElement("div", {
+                key: "tournaments-number",
+                className: "text-3xl font-black text-yellow-400 mb-1"
+              }, Math.floor(heroStats.tournaments)),
+              React.createElement("div", {
+                key: "tournaments-label",
+                className: "text-sm text-gray-400"
+              }, "Tournois Gagn\xE9s")
+            ])
+          ]),
+          // Original stats cards
+          React.createElement("div", {
+            key: "stats-cards",
+            className: "flex flex-wrap justify-center gap-8"
+          }, [
+            React.createElement(motion.div, {
+              key: "champions-card",
+              className: "flex items-center space-x-3 glass-dark px-8 py-4 rounded-2xl border border-yellow-400/20 group",
+              whileHover: { scale: 1.05, borderColor: "rgba(251, 191, 36, 0.5)" },
+              transition: { type: "spring", stiffness: 400 }
+            }, [
+              React.createElement(Trophy, { key: "trophy", className: "text-yellow-400 group-hover:rotate-12 transition-transform", size: 28 }),
+              React.createElement("div", { key: "champions-content", className: "text-left" }, [
+                React.createElement("span", { key: "champions-title", className: "text-xl font-bold block" }, "Champions"),
+                React.createElement("span", { key: "champions-subtitle", className: "text-sm text-gray-400" }, "Multi-jeux")
+              ])
+            ]),
+            React.createElement(motion.div, {
+              key: "team-card",
+              className: "flex items-center space-x-3 glass-dark px-8 py-4 rounded-2xl border border-discord-blurple/20 group",
+              whileHover: { scale: 1.05, borderColor: "rgba(88, 101, 242, 0.5)" },
+              transition: { type: "spring", stiffness: 400 }
+            }, [
+              React.createElement(Users, { key: "users", className: "text-discord-blurple group-hover:scale-110 transition-transform", size: 28 }),
+              React.createElement("div", { key: "team-content", className: "text-left" }, [
+                React.createElement("span", { key: "team-title", className: "text-xl font-bold block" }, "Team"),
+                React.createElement("span", { key: "team-subtitle", className: "text-sm text-gray-400" }, "Professionnelle")
+              ])
+            ]),
+            React.createElement(motion.div, {
+              key: "pro-card",
+              className: "flex items-center space-x-3 glass-dark px-8 py-4 rounded-2xl border border-green-400/20 group",
+              whileHover: { scale: 1.05, borderColor: "rgba(34, 197, 94, 0.5)" },
+              transition: { type: "spring", stiffness: 400 }
+            }, [
+              React.createElement(Zap, { key: "zap", className: "text-green-400 group-hover:animate-pulse", size: 28 }),
+              React.createElement("div", { key: "pro-content", className: "text-left" }, [
+                React.createElement("span", { key: "pro-title", className: "text-xl font-bold block" }, "Pro"),
+                React.createElement("span", { key: "pro-subtitle", className: "text-sm text-gray-400" }, "Niveau")
+              ])
+            ])
+          ])
+        ]),
+        // Enhanced action buttons
+        React.createElement(motion.div, {
+          key: "buttons",
+          className: "flex flex-col sm:flex-row gap-6 justify-center items-center mb-8",
+          initial: { opacity: 0, y: 30 },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 0.8, delay: 1.2 }
+        }, [
+          React.createElement(motion.a, {
+            key: "discord-btn",
+            href: "https://discord.gg/eoz",
+            target: "_blank",
+            rel: "noopener noreferrer",
+            className: "relative group bg-gradient-to-r from-discord-blurple to-purple-600 hover:from-purple-600 hover:to-discord-blurple text-white px-12 py-6 rounded-2xl text-xl font-bold transition-all duration-300 shadow-2xl overflow-hidden",
+            whileHover: { scale: 1.05, y: -2 },
+            whileTap: { scale: 0.98 }
+          }, [
+            React.createElement("span", {
+              key: "btn-content",
+              className: "relative z-10 flex items-center space-x-3"
+            }, [
+              React.createElement(Play, { key: "play-icon", size: 24 }),
+              React.createElement("span", { key: "btn-text" }, "Rejoindre Discord"),
+              React.createElement(motion.div, {
+                key: "btn-arrow",
+                animate: { x: [0, 5, 0] },
+                transition: { duration: 1.5, repeat: Infinity }
+              }, "\u2192")
+            ]),
+            React.createElement(motion.div, {
+              key: "btn-glow",
+              className: "absolute inset-0 bg-gradient-to-r from-discord-blurple to-purple-600 rounded-2xl blur-xl opacity-50 group-hover:opacity-70 transition-opacity duration-300"
+            }),
+            React.createElement(motion.div, {
+              key: "btn-shine",
+              className: "absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transform -skew-x-12 transition-all duration-700",
+              animate: { x: ["-100%", "100%"] },
+              transition: { duration: 2, repeat: Infinity, repeatDelay: 3 }
+            })
+          ]),
+          React.createElement(motion.a, {
+            key: "team-btn",
+            href: "#team",
+            className: "glass-dark border border-white/20 hover:border-white/40 hover:bg-white/10 text-white px-12 py-6 rounded-2xl text-xl font-bold transition-all duration-300 backdrop-blur-xl relative overflow-hidden group",
+            whileHover: { scale: 1.05, y: -2 },
+            whileTap: { scale: 0.98 }
+          }, [
+            React.createElement("span", {
+              key: "team-btn-text",
+              className: "relative z-10"
+            }, "D\xE9couvrir l'\xE9quipe"),
+            React.createElement(motion.div, {
+              key: "team-btn-bg",
+              className: "absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent",
+              initial: { x: "-100%" },
+              whileHover: { x: "100%" },
+              transition: { duration: 0.6 }
+            })
+          ])
+        ])
+      ])
+    ),
+    // Enhanced scroll indicator
+    React.createElement(
       motion.div,
       {
-        className: "absolute w-2 h-2 bg-discord-blurple rounded-full opacity-20",
-        initial: {
-          x: Math.random() * (typeof window !== "undefined" ? window.innerWidth : 1920),
-          y: Math.random() * (typeof window !== "undefined" ? window.innerHeight : 1080)
-        },
-        animate: {
-          x: Math.random() * (typeof window !== "undefined" ? window.innerWidth : 1920),
-          y: Math.random() * (typeof window !== "undefined" ? window.innerHeight : 1080)
-        },
-        transition: {
-          duration: Math.random() * 10 + 10,
-          repeat: Infinity,
-          repeatType: "reverse"
-        }
+        key: "scroll-indicator",
+        className: "absolute bottom-8 left-1/2 transform -translate-x-1/2",
+        initial: { opacity: 0 },
+        animate: { opacity: 1 },
+        transition: { duration: 0.8, delay: 1.5 }
       },
-      i,
-      false,
-      {
-        fileName: "<stdin>",
-        lineNumber: 11,
-        columnNumber: 11
-      }
-    )) }, void 0, false, {
-      fileName: "<stdin>",
-      lineNumber: 9,
-      columnNumber: 7
-    }),
-    /* @__PURE__ */ jsxDEV("div", { className: "max-w-6xl mx-auto text-center relative z-10", children: [
-      /* @__PURE__ */ jsxDEV(
-        motion.div,
-        {
-          initial: { opacity: 0, y: 50 },
-          animate: { opacity: 1, y: 0 },
-          transition: { duration: 0.8, delay: 0.2 },
-          children: [
-            /* @__PURE__ */ jsxDEV(
-              motion.div,
-              {
-                className: "mb-8",
-                initial: { scale: 0.8, opacity: 0 },
-                animate: { scale: 1, opacity: 1 },
-                transition: { duration: 1, delay: 0.3 },
-                children: /* @__PURE__ */ jsxDEV(
-                  motion.h1,
-                  {
-                    className: "text-7xl md:text-9xl font-black mb-6 gradient-text relative",
-                    whileHover: { scale: 1.05 },
-                    transition: { type: "spring", stiffness: 300 },
-                    children: [
-                      "EOZ TEAM",
-                      /* @__PURE__ */ jsxDEV(
-                        motion.div,
-                        {
-                          className: "absolute -inset-1 bg-gradient-to-r from-discord-blurple via-purple-500 to-blue-500 rounded-lg blur-xl opacity-20",
-                          animate: {
-                            scale: [1, 1.1, 1],
-                            opacity: [0.2, 0.3, 0.2]
-                          },
-                          transition: {
-                            duration: 3,
-                            repeat: Infinity,
-                            ease: "easeInOut"
-                          }
-                        },
-                        void 0,
-                        false,
-                        {
-                          fileName: "<stdin>",
-                          lineNumber: 49,
-                          columnNumber: 15
-                        }
-                      )
-                    ]
-                  },
-                  void 0,
-                  true,
-                  {
-                    fileName: "<stdin>",
-                    lineNumber: 43,
-                    columnNumber: 13
-                  }
-                )
-              },
-              void 0,
-              false,
-              {
-                fileName: "<stdin>",
-                lineNumber: 37,
-                columnNumber: 11
-              }
-            ),
-            /* @__PURE__ */ jsxDEV(
-              motion.p,
-              {
-                className: "text-2xl md:text-3xl text-gray-200 mb-12 max-w-4xl mx-auto font-medium leading-relaxed",
-                initial: { opacity: 0, y: 20 },
-                animate: { opacity: 1, y: 0 },
-                transition: { duration: 0.8, delay: 0.6 },
-                children: [
-                  "Excellence \u2022 Passion \u2022 Victoire",
-                  /* @__PURE__ */ jsxDEV("br", {}, void 0, false, {
-                    fileName: "<stdin>",
-                    lineNumber: 71,
-                    columnNumber: 13
-                  }),
-                  /* @__PURE__ */ jsxDEV("span", { className: "text-lg text-gray-400 font-normal", children: "La r\xE9f\xE9rence fran\xE7aise en esport comp\xE9titif" }, void 0, false, {
-                    fileName: "<stdin>",
-                    lineNumber: 72,
-                    columnNumber: 13
-                  })
-                ]
-              },
-              void 0,
-              true,
-              {
-                fileName: "<stdin>",
-                lineNumber: 64,
-                columnNumber: 11
-              }
-            ),
-            /* @__PURE__ */ jsxDEV(
-              motion.div,
-              {
-                className: "flex flex-wrap justify-center gap-8 mb-16",
-                initial: { opacity: 0, y: 30 },
-                animate: { opacity: 1, y: 0 },
-                transition: { duration: 0.8, delay: 0.8 },
-                children: [
-                  /* @__PURE__ */ jsxDEV(
-                    motion.div,
-                    {
-                      className: "flex items-center space-x-3 glass-dark px-8 py-4 rounded-2xl border border-yellow-400/20",
-                      whileHover: { scale: 1.05, borderColor: "rgba(251, 191, 36, 0.5)" },
-                      transition: { type: "spring", stiffness: 400 },
-                      children: [
-                        /* @__PURE__ */ jsxDEV(Trophy, { className: "text-yellow-400", size: 28 }, void 0, false, {
-                          fileName: "<stdin>",
-                          lineNumber: 86,
-                          columnNumber: 15
-                        }),
-                        /* @__PURE__ */ jsxDEV("div", { className: "text-left", children: [
-                          /* @__PURE__ */ jsxDEV("span", { className: "text-xl font-bold block", children: "Champions" }, void 0, false, {
-                            fileName: "<stdin>",
-                            lineNumber: 88,
-                            columnNumber: 17
-                          }),
-                          /* @__PURE__ */ jsxDEV("span", { className: "text-sm text-gray-400", children: "Multi-jeux" }, void 0, false, {
-                            fileName: "<stdin>",
-                            lineNumber: 89,
-                            columnNumber: 17
-                          })
-                        ] }, void 0, true, {
-                          fileName: "<stdin>",
-                          lineNumber: 87,
-                          columnNumber: 15
-                        })
-                      ]
-                    },
-                    void 0,
-                    true,
-                    {
-                      fileName: "<stdin>",
-                      lineNumber: 81,
-                      columnNumber: 13
-                    }
-                  ),
-                  /* @__PURE__ */ jsxDEV(
-                    motion.div,
-                    {
-                      className: "flex items-center space-x-3 glass-dark px-8 py-4 rounded-2xl border border-discord-blurple/20",
-                      whileHover: { scale: 1.05, borderColor: "rgba(88, 101, 242, 0.5)" },
-                      transition: { type: "spring", stiffness: 400 },
-                      children: [
-                        /* @__PURE__ */ jsxDEV(Users, { className: "text-discord-blurple", size: 28 }, void 0, false, {
-                          fileName: "<stdin>",
-                          lineNumber: 98,
-                          columnNumber: 15
-                        }),
-                        /* @__PURE__ */ jsxDEV("div", { className: "text-left", children: [
-                          /* @__PURE__ */ jsxDEV("span", { className: "text-xl font-bold block", children: "Team" }, void 0, false, {
-                            fileName: "<stdin>",
-                            lineNumber: 100,
-                            columnNumber: 17
-                          }),
-                          /* @__PURE__ */ jsxDEV("span", { className: "text-sm text-gray-400", children: "Professionnelle" }, void 0, false, {
-                            fileName: "<stdin>",
-                            lineNumber: 101,
-                            columnNumber: 17
-                          })
-                        ] }, void 0, true, {
-                          fileName: "<stdin>",
-                          lineNumber: 99,
-                          columnNumber: 15
-                        })
-                      ]
-                    },
-                    void 0,
-                    true,
-                    {
-                      fileName: "<stdin>",
-                      lineNumber: 93,
-                      columnNumber: 13
-                    }
-                  ),
-                  /* @__PURE__ */ jsxDEV(
-                    motion.div,
-                    {
-                      className: "flex items-center space-x-3 glass-dark px-8 py-4 rounded-2xl border border-green-400/20",
-                      whileHover: { scale: 1.05, borderColor: "rgba(34, 197, 94, 0.5)" },
-                      transition: { type: "spring", stiffness: 400 },
-                      children: [
-                        /* @__PURE__ */ jsxDEV(Zap, { className: "text-green-400", size: 28 }, void 0, false, {
-                          fileName: "<stdin>",
-                          lineNumber: 110,
-                          columnNumber: 15
-                        }),
-                        /* @__PURE__ */ jsxDEV("div", { className: "text-left", children: [
-                          /* @__PURE__ */ jsxDEV("span", { className: "text-xl font-bold block", children: "Pro" }, void 0, false, {
-                            fileName: "<stdin>",
-                            lineNumber: 112,
-                            columnNumber: 17
-                          }),
-                          /* @__PURE__ */ jsxDEV("span", { className: "text-sm text-gray-400", children: "Niveau" }, void 0, false, {
-                            fileName: "<stdin>",
-                            lineNumber: 113,
-                            columnNumber: 17
-                          })
-                        ] }, void 0, true, {
-                          fileName: "<stdin>",
-                          lineNumber: 111,
-                          columnNumber: 15
-                        })
-                      ]
-                    },
-                    void 0,
-                    true,
-                    {
-                      fileName: "<stdin>",
-                      lineNumber: 105,
-                      columnNumber: 13
-                    }
-                  )
-                ]
-              },
-              void 0,
-              true,
-              {
-                fileName: "<stdin>",
-                lineNumber: 75,
-                columnNumber: 11
-              }
-            ),
-            /* @__PURE__ */ jsxDEV(
-              motion.div,
-              {
-                className: "flex flex-col sm:flex-row gap-6 justify-center items-center",
-                initial: { opacity: 0, y: 30 },
-                animate: { opacity: 1, y: 0 },
-                transition: { duration: 0.8, delay: 1.2 },
-                children: [
-                  /* @__PURE__ */ jsxDEV(
-                    motion.a,
-                    {
-                      href: "https://discord.gg/eoz",
-                      target: "_blank",
-                      rel: "noopener noreferrer",
-                      className: "relative group bg-gradient-to-r from-discord-blurple to-purple-600 hover:from-purple-600 hover:to-discord-blurple text-white px-10 py-5 rounded-2xl text-xl font-bold transition-all duration-300 shadow-2xl",
-                      whileHover: { scale: 1.05, y: -2 },
-                      whileTap: { scale: 0.98 },
-                      children: [
-                        /* @__PURE__ */ jsxDEV("span", { className: "relative z-10 flex items-center space-x-3", children: [
-                          /* @__PURE__ */ jsxDEV("span", { children: "Rejoindre Discord" }, void 0, false, {
-                            fileName: "<stdin>",
-                            lineNumber: 133,
-                            columnNumber: 17
-                          }),
-                          /* @__PURE__ */ jsxDEV(
-                            motion.div,
-                            {
-                              animate: { x: [0, 5, 0] },
-                              transition: { duration: 1.5, repeat: Infinity },
-                              children: "\u2192"
-                            },
-                            void 0,
-                            false,
-                            {
-                              fileName: "<stdin>",
-                              lineNumber: 134,
-                              columnNumber: 17
-                            }
-                          )
-                        ] }, void 0, true, {
-                          fileName: "<stdin>",
-                          lineNumber: 132,
-                          columnNumber: 15
-                        }),
-                        /* @__PURE__ */ jsxDEV("div", { className: "absolute inset-0 bg-gradient-to-r from-discord-blurple to-purple-600 rounded-2xl blur-xl opacity-50 group-hover:opacity-70 transition-opacity duration-300" }, void 0, false, {
-                          fileName: "<stdin>",
-                          lineNumber: 141,
-                          columnNumber: 15
-                        })
-                      ]
-                    },
-                    void 0,
-                    true,
-                    {
-                      fileName: "<stdin>",
-                      lineNumber: 124,
-                      columnNumber: 13
-                    }
-                  ),
-                  /* @__PURE__ */ jsxDEV(
-                    motion.a,
-                    {
-                      href: "#team",
-                      className: "glass-dark border border-white/20 hover:border-white/40 hover:bg-white/10 text-white px-10 py-5 rounded-2xl text-xl font-bold transition-all duration-300 backdrop-blur-xl",
-                      whileHover: { scale: 1.05, y: -2 },
-                      whileTap: { scale: 0.98 },
-                      children: "D\xE9couvrir l'\xE9quipe"
-                    },
-                    void 0,
-                    false,
-                    {
-                      fileName: "<stdin>",
-                      lineNumber: 144,
-                      columnNumber: 13
-                    }
-                  )
-                ]
-              },
-              void 0,
-              true,
-              {
-                fileName: "<stdin>",
-                lineNumber: 118,
-                columnNumber: 11
-              }
-            )
-          ]
-        },
-        void 0,
-        true,
-        {
-          fileName: "<stdin>",
-          lineNumber: 32,
-          columnNumber: 9
-        }
-      ),
-      /* @__PURE__ */ jsxDEV(
-        motion.div,
-        {
-          className: "mt-24",
-          initial: { opacity: 0 },
-          animate: { opacity: 1 },
-          transition: { duration: 0.8, delay: 1.5 },
-          children: /* @__PURE__ */ jsxDEV(
-            motion.a,
-            {
-              href: "#games",
-              className: "inline-block p-4 glass-dark rounded-full hover:bg-white/10 transition-all duration-300",
-              animate: { y: [0, -10, 0] },
-              transition: { duration: 2, repeat: Infinity, ease: "easeInOut" },
-              whileHover: { scale: 1.1 },
-              children: /* @__PURE__ */ jsxDEV(ArrowDown, { size: 32, className: "text-discord-blurple" }, void 0, false, {
-                fileName: "<stdin>",
-                lineNumber: 168,
-                columnNumber: 13
-              })
-            },
-            void 0,
-            false,
-            {
-              fileName: "<stdin>",
-              lineNumber: 161,
-              columnNumber: 11
-            }
-          )
-        },
-        void 0,
-        false,
-        {
-          fileName: "<stdin>",
-          lineNumber: 155,
-          columnNumber: 9
-        }
-      )
-    ] }, void 0, true, {
-      fileName: "<stdin>",
-      lineNumber: 31,
-      columnNumber: 7
-    })
-  ] }, void 0, true, {
-    fileName: "<stdin>",
-    lineNumber: 7,
-    columnNumber: 5
-  });
+      React.createElement(motion.a, {
+        href: "#games",
+        className: "inline-flex flex-col items-center space-y-2 p-4 glass-dark rounded-2xl hover:bg-white/10 transition-all duration-300 group",
+        animate: { y: [0, -10, 0] },
+        transition: { duration: 2, repeat: Infinity, ease: "easeInOut" },
+        whileHover: { scale: 1.1 }
+      }, [
+        React.createElement("span", {
+          key: "scroll-text",
+          className: "text-sm text-gray-400 group-hover:text-white transition-colors"
+        }, "D\xE9couvrir"),
+        React.createElement(ArrowDown, {
+          key: "arrow-down",
+          size: 24,
+          className: "text-discord-blurple group-hover:text-purple-400 transition-colors"
+        })
+      ])
+    )
+  ]);
 };
 var stdin_default = HeroSection;
 export {
