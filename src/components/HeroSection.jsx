@@ -56,34 +56,6 @@ const HeroSection = () => {
         })
       )
     ),
-    // Floating geometric shapes
-    React.createElement(
-      "div",
-      { key: "shapes", className: "absolute inset-0 overflow-hidden pointer-events-none" },
-      [...Array(8)].map(
-        (_, i) => React.createElement(motion.div, {
-          key: `shape-${i}`,
-          className: "absolute border border-discord-blurple/30",
-          style: {
-            width: Math.random() * 100 + 50,
-            height: Math.random() * 100 + 50,
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            borderRadius: i % 2 === 0 ? "50%" : "0%"
-          },
-          animate: {
-            rotate: [0, 360],
-            x: [0, Math.random() * 200 - 100],
-            y: [0, Math.random() * 200 - 100]
-          },
-          transition: {
-            duration: Math.random() * 30 + 20,
-            repeat: Infinity,
-            ease: "linear"
-          }
-        })
-      )
-    ),
     React.createElement(
       "div",
       { key: "content", className: "max-w-7xl mx-auto text-center relative z-10" },
@@ -274,34 +246,6 @@ const HeroSection = () => {
             })
           ])
         ])
-      ])
-    ),
-    // Enhanced scroll indicator
-    React.createElement(
-      motion.div,
-      {
-        key: "scroll-indicator",
-        className: "absolute bottom-8 left-1/2 transform -translate-x-1/2",
-        initial: { opacity: 0 },
-        animate: { opacity: 1 },
-        transition: { duration: 0.8, delay: 1.5 }
-      },
-      React.createElement(motion.a, {
-        href: "#games",
-        className: "inline-flex flex-col items-center space-y-2 p-4 glass-dark rounded-2xl hover:bg-white/10 transition-all duration-300 group",
-        animate: { y: [0, -10, 0] },
-        transition: { duration: 2, repeat: Infinity, ease: "easeInOut" },
-        whileHover: { scale: 1.1 }
-      }, [
-        React.createElement("span", {
-          key: "scroll-text",
-          className: "text-sm text-gray-400 group-hover:text-white transition-colors"
-        }, "D\xE9couvrir"),
-        React.createElement(ArrowDown, {
-          key: "arrow-down",
-          size: 24,
-          className: "text-discord-blurple group-hover:text-purple-400 transition-colors"
-        })
       ])
     )
   ]);
