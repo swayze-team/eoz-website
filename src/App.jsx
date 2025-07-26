@@ -9,19 +9,16 @@ import VideoBackground from "./components/VideoBackground";
 import TeamRoster from "./components/TeamRoster";
 import GameCarousel from "./components/GameCarousel";
 import LoadingScreen from "./components/LoadingScreen";
-import ParticleSystem from "./components/ParticleSystem";
 import ScrollProgress from "./components/ScrollProgress";
 import BackToTop from "./components/BackToTop";
 import NotificationSystem from "./components/NotificationSystem";
 import MusicPlayer from "./components/MusicPlayer";
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const [particlesEnabled, setParticlesEnabled] = useState(true);
   const [theme, setTheme] = useState({
     primaryColor: "#5865F2",
     accentColor: "#7289DA",
     glowIntensity: 0.3,
-    /* @tweakable sound and music settings */
     musicEnabled: true
   });
   const [performanceMode, setPerformanceMode] = useState("high");
@@ -40,7 +37,6 @@ function App() {
       if (connection && connection.effectiveType) {
         if (connection.effectiveType === "2g" || connection.effectiveType === "slow-2g") {
           setPerformanceMode("low");
-          setParticlesEnabled(false);
         }
       }
     };
@@ -63,34 +59,9 @@ function App() {
     }
   }, [
     React.createElement(VideoBackground, { key: "video", performanceMode }),
-    particlesEnabled && performanceMode !== "low" && React.createElement(ParticleSystem, { key: "particles" }),
     React.createElement(ScrollProgress, { key: "scroll-progress" }),
     React.createElement(NotificationSystem, { key: "notifications" }),
     React.createElement(MusicPlayer, { key: "music-player", enabled: theme.musicEnabled }),
-    // Enhanced accessibility controls
-    React.createElement("div", {
-      key: "accessibility-controls",
-      className: "fixed top-20 left-4 z-50 space-y-2 opacity-0 hover:opacity-100 transition-opacity duration-300"
-    }, [
-      React.createElement("button", {
-        key: "reduce-motion",
-        onClick: () => setAnimationSpeed(animationSpeed === 1 ? 0.5 : 1),
-        className: "glass-dark p-2 rounded text-xs text-gray-300 hover:text-white",
-        "aria-label": "Toggle reduced motion"
-      }, animationSpeed === 1 ? "\u{1F40C}" : "\u26A1"),
-      React.createElement("button", {
-        key: "toggle-particles",
-        onClick: () => setParticlesEnabled(!particlesEnabled),
-        className: "glass-dark p-2 rounded text-xs text-gray-300 hover:text-white",
-        "aria-label": "Toggle particle effects"
-      }, particlesEnabled ? "\u2728" : "\u{1F6AB}"),
-      React.createElement("button", {
-        key: "toggle-sound",
-        onClick: () => setTheme((prev) => ({ ...prev, soundEnabled: !prev.soundEnabled })),
-        className: "glass-dark p-2 rounded text-xs text-gray-300 hover:text-white",
-        "aria-label": "Toggle sound effects"
-      }, theme.soundEnabled ? "\u{1F50A}" : "\u{1F507}")
-    ]),
     React.createElement("div", { className: "relative z-10", key: "content" }, [
       React.createElement(Header, {
         key: "header",

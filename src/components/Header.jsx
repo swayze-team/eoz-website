@@ -14,11 +14,6 @@ const Header = ({ theme, setTheme }) => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  const playClickSound = () => {
-    if (soundEnabled) {
-      console.log("Click sound played");
-    }
-  };
   return React.createElement(
     motion.header,
     {
@@ -37,8 +32,7 @@ const Header = ({ theme, setTheme }) => {
           key: "logo",
           className: "flex items-center space-x-3",
           whileHover: { scale: 1.05 },
-          transition: { type: "spring", stiffness: 400 },
-          onClick: playClickSound
+          transition: { type: "spring", stiffness: 400 }
         }, [
           React.createElement(motion.img, {
             key: "logo-img",
@@ -77,8 +71,7 @@ const Header = ({ theme, setTheme }) => {
               key: "home",
               href: "#home",
               className: "text-white hover:text-discord-blurple transition-colors duration-200 font-medium flex items-center space-x-2 group",
-              whileHover: { scale: 1.05 },
-              onClick: playClickSound
+              whileHover: { scale: 1.05 }
             }, [
               React.createElement("span", { key: "text" }, "Accueil"),
               React.createElement(motion.div, {
@@ -90,8 +83,7 @@ const Header = ({ theme, setTheme }) => {
               key: "games",
               href: "#games",
               className: "text-white hover:text-discord-blurple transition-colors duration-200 font-medium flex items-center space-x-2 group",
-              whileHover: { scale: 1.05 },
-              onClick: playClickSound
+              whileHover: { scale: 1.05 }
             }, [
               React.createElement(Gamepad2, { key: "icon", size: 16 }),
               React.createElement("span", { key: "text" }, "Jeux")
@@ -100,22 +92,19 @@ const Header = ({ theme, setTheme }) => {
               key: "team",
               href: "#team",
               className: "text-white hover:text-discord-blurple transition-colors duration-200 font-medium",
-              whileHover: { scale: 1.05 },
-              onClick: playClickSound
+              whileHover: { scale: 1.05 }
             }, "\xC9quipe"),
             React.createElement(motion.a, {
               key: "discord",
               href: "#discord",
               className: "text-white hover:text-discord-blurple transition-colors duration-200 font-medium",
-              whileHover: { scale: 1.05 },
-              onClick: playClickSound
+              whileHover: { scale: 1.05 }
             }, "Discord"),
             React.createElement(motion.a, {
               key: "support",
               href: "#support",
               className: "text-white hover:text-discord-blurple transition-colors duration-200 font-medium",
-              whileHover: { scale: 1.05 },
-              onClick: playClickSound
+              whileHover: { scale: 1.05 }
             }, "Support")
           ])
         ),
@@ -132,8 +121,7 @@ const Header = ({ theme, setTheme }) => {
             rel: "noopener noreferrer",
             className: "flex items-center space-x-2 bg-discord-blurple hover:bg-opacity-80 text-white px-4 py-2 rounded-lg transition-all duration-200 relative overflow-hidden group",
             whileHover: { scale: 1.05 },
-            whileTap: { scale: 0.95 },
-            onClick: playClickSound
+            whileTap: { scale: 0.95 }
           }, [
             React.createElement(MessageCircle, { key: "icon", size: 16 }),
             React.createElement("span", { key: "text" }, "Discord"),
@@ -148,10 +136,7 @@ const Header = ({ theme, setTheme }) => {
           "div",
           { key: "mobile-menu", className: "md:hidden" },
           React.createElement(motion.button, {
-            onClick: () => {
-              setIsMenuOpen(!isMenuOpen);
-              playClickSound();
-            },
+            onClick: () => setIsMenuOpen(!isMenuOpen),
             className: "text-white hover:text-discord-blurple transition-colors duration-200 p-2",
             whileHover: { scale: 1.1 },
             whileTap: { scale: 0.9 }
@@ -175,10 +160,7 @@ const Header = ({ theme, setTheme }) => {
             href: "#home",
             className: "flex items-center space-x-3 text-white hover:text-discord-blurple px-3 py-3 rounded-md text-base font-medium transition-colors duration-200",
             whileHover: { x: 5 },
-            onClick: () => {
-              setIsMenuOpen(false);
-              playClickSound();
-            }
+            onClick: () => setIsMenuOpen(false)
           }, [
             React.createElement("span", { key: "home-text" }, "\u{1F3E0}"),
             React.createElement("span", { key: "home-label" }, "Accueil")
@@ -231,10 +213,7 @@ const Header = ({ theme, setTheme }) => {
               target: "_blank",
               rel: "noopener noreferrer",
               className: "flex items-center justify-center space-x-2 bg-discord-blurple text-white px-4 py-3 rounded-lg transition-all duration-200 w-full",
-              onClick: () => {
-                setIsMenuOpen(false);
-                playClickSound();
-              }
+              onClick: () => setIsMenuOpen(false)
             }, [
               React.createElement(MessageCircle, { key: "mobile-icon", size: 16 }),
               React.createElement("span", { key: "mobile-text" }, "Rejoindre Discord")

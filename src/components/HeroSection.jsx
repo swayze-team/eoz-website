@@ -4,11 +4,6 @@ import { ArrowDown, Gamepad2, Trophy, Users, Zap, Play } from "lucide-react";
 import { useState, useEffect } from "react";
 const HeroSection = () => {
   const [typedText, setTypedText] = useState("");
-  const [heroStats, setHeroStats] = useState({
-    matches: 0,
-    victories: 0,
-    tournaments: 0
-  });
   const fullText = "Excellence \u2022 Passion \u2022 Victoire";
   useEffect(() => {
     let index = 0;
@@ -20,17 +15,8 @@ const HeroSection = () => {
         clearInterval(typeInterval);
       }
     }, 100);
-    const statsInterval = setInterval(() => {
-      setHeroStats((prev) => ({
-        matches: Math.min(prev.matches + Math.random() * 50, 2847),
-        victories: Math.min(prev.victories + Math.random() * 30, 2105),
-        tournaments: Math.min(prev.tournaments + Math.random() * 5, 47)
-      }));
-    }, 50);
-    setTimeout(() => clearInterval(statsInterval), 3e3);
     return () => {
       clearInterval(typeInterval);
-      clearInterval(statsInterval);
     };
   }, []);
   return React.createElement("section", {
@@ -178,64 +164,16 @@ const HeroSection = () => {
             className: "text-xl text-gray-400 font-normal max-w-3xl mx-auto leading-relaxed"
           }, "La r\xE9f\xE9rence fran\xE7aise en esport comp\xE9titif - Domination, Innovation, Excellence")
         ]),
-        // Enhanced stats with live counters
+        // Team qualities cards
         React.createElement(motion.div, {
-          key: "stats-section",
+          key: "qualities-section",
           className: "mb-16",
           initial: { opacity: 0, y: 30 },
           animate: { opacity: 1, y: 0 },
           transition: { duration: 0.8, delay: 0.8 }
         }, [
           React.createElement("div", {
-            key: "live-stats",
-            className: "grid grid-cols-1 md:grid-cols-3 gap-6 mb-8"
-          }, [
-            React.createElement(motion.div, {
-              key: "matches-stat",
-              className: "glass-dark px-6 py-4 rounded-2xl border border-blue-400/30 text-center",
-              whileHover: { scale: 1.05, borderColor: "rgba(59, 130, 246, 0.5)" }
-            }, [
-              React.createElement("div", {
-                key: "matches-number",
-                className: "text-3xl font-black text-blue-400 mb-1"
-              }, Math.floor(heroStats.matches).toLocaleString()),
-              React.createElement("div", {
-                key: "matches-label",
-                className: "text-sm text-gray-400"
-              }, "Matchs Jou\xE9s")
-            ]),
-            React.createElement(motion.div, {
-              key: "victories-stat",
-              className: "glass-dark px-6 py-4 rounded-2xl border border-green-400/30 text-center",
-              whileHover: { scale: 1.05, borderColor: "rgba(34, 197, 94, 0.5)" }
-            }, [
-              React.createElement("div", {
-                key: "victories-number",
-                className: "text-3xl font-black text-green-400 mb-1"
-              }, Math.floor(heroStats.victories).toLocaleString()),
-              React.createElement("div", {
-                key: "victories-label",
-                className: "text-sm text-gray-400"
-              }, "Victoires")
-            ]),
-            React.createElement(motion.div, {
-              key: "tournaments-stat",
-              className: "glass-dark px-6 py-4 rounded-2xl border border-yellow-400/30 text-center",
-              whileHover: { scale: 1.05, borderColor: "rgba(251, 191, 36, 0.5)" }
-            }, [
-              React.createElement("div", {
-                key: "tournaments-number",
-                className: "text-3xl font-black text-yellow-400 mb-1"
-              }, Math.floor(heroStats.tournaments)),
-              React.createElement("div", {
-                key: "tournaments-label",
-                className: "text-sm text-gray-400"
-              }, "Tournois Gagn\xE9s")
-            ])
-          ]),
-          // Original stats cards
-          React.createElement("div", {
-            key: "stats-cards",
+            key: "qualities-cards",
             className: "flex flex-wrap justify-center gap-8"
           }, [
             React.createElement(motion.div, {
